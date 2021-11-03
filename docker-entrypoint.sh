@@ -104,7 +104,8 @@ function install() {
     sleep 1
   done
   route add ${VPN_SERVER_IP} gw ${DEFAULT_GW}
-  route add default dev ppp0
+  #route add default dev ppp0
+  ip route add 192.168.5.0/24 dev ppp0
   echo Default route is changed from ${DEFAULT_GW} to ppp0
 
   INSTALLED=1
@@ -117,7 +118,8 @@ function uninstall() {
     return
   fi
 
-  route del default dev ppp0
+  #route del default dev ppp0
+  ip route del 192.168.5.0/24
   route del ${VPN_SERVER_IP} gw ${DEFAULT_GW}
   echo Default route is changed back from ppp0 to ${DEFAULT_GW}
   echo "d myvpn" > /var/run/xl2tpd/l2tp-control
