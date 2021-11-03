@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.8
 
 RUN apk add strongswan xl2tpd ppp; rm -rf /var/cache/apk/*
 
